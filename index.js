@@ -1,9 +1,10 @@
-import express from 'express';
+import express, { response } from 'express';
 import dotenv from 'dotenv';
 import connectDb from './utils/db.js';
 import cloudinary from 'cloudinary';
 import cors from 'cors';
 import helmet from 'helmet';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -14,6 +15,19 @@ cloudinary.v2.config({
 });
 
 const app = express();
+
+const url = `https://ecommerce-2026-server.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios.get(url).then((response) => {
+    console.log("website reloaded");
+  }).catch((error) => {
+    console.error(`Error : ${error.message}`);
+  });
+}
+
+setInterval(reloadWebsite, interval);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
