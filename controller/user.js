@@ -6,10 +6,14 @@ import jwt from 'jsonwebtoken';
 
 export const loginUser = TryCatch(async(req, res) => {
     const { email } = req.body;
+    console.log(email);
+    
 
     const subject = "Ecommerce App";
 
     const otp = Math.floor(Math.random() * 1000000);
+    console.log(otp);
+    
 
     const prevOtp = await OTP.findOne({
         email,
