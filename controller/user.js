@@ -19,6 +19,9 @@ export const loginUser = TryCatch(async(req, res) => {
         await prevOtp.deleteOne();
     }
 
+    console.log({ email, subject, otp });
+    
+
     await sendOtp({ email, subject, otp});
     await OTP.create({ email, otp});
 
