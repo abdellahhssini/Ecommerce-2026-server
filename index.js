@@ -16,7 +16,7 @@ cloudinary.v2.config({
 
 const app = express();
 
-const url = `https://ecommerce-2026-server.onrender.com`;
+/* const url = `https://ecommerce-2026-server.onrender.com`;
 const interval = 30000;
 
 function reloadWebsite() {
@@ -27,7 +27,7 @@ function reloadWebsite() {
   });
 }
 
-setInterval(reloadWebsite, interval);
+setInterval(reloadWebsite, interval); */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -66,12 +66,7 @@ import cartRoutes from "./routes/cart.js";
 import addressRoutes from "./routes/address.js";
 import orderRoutes from "./routes/order.js";
 
-app.use((req, res, next) => {
-    console.log("🔥 GLOBAL HIT:", req.method, req.url);
-    next();
-});
-
-app.use("/api/user", userRoutes);
+app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api", cartRoutes);
 app.use("/api", addressRoutes);
